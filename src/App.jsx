@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ResultsForm from "./components/ResultsForm";
-import ResultsView from "./Components/ResultsView";
+import ResultsView from "./components/ResultsView";
 import { matchDegrees } from "./utils/matcher";
 import degreeData from "./data/degrees-computing.json";
 
