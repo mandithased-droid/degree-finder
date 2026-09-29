@@ -1,0 +1,412 @@
+{
+  "meta": {
+    "institution": "SLIIT",
+    "intake": "2027",
+    "source": "Entry Requirements and Fee Structure - 2027 (SLIIT)",
+    "sameSittingRequiredForAll": true,
+    "scope": "Faculty of Computing programmes only. Local A/L requirements only — Cambridge/Edexcel columns from the source document are not represented here.",
+    "conditionTypesUsed": [
+      "alMinPasses",
+      "alStream",
+      "olSubjectMinGrade",
+      "alSubjectPresent",
+      "alSubjectsAllOf",
+      "alSubjectsOneOf",
+      "alGradeDistribution"
+    ]
+  },
+  "programmes": [
+    {
+      "id": "sliit-it",
+      "name": "BSc (Hons) Information Technology",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": ["Aptitude Test conducted by SLIIT"],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "Source document says 'Physical Science stream or Engineering Technology stream'. Engineering Technology is a subject taken within the 'Technology' stream, not a stream name itself — mapped to the Technology stream here; verify with SLIIT if a student's exact combination is borderline.",
+        "The source PDF text describing extra subject requirements for the Artificial Intelligence specialization within this degree was garbled/incomplete in extraction. Treat any AI-specialization-specific subject requirement as unconfirmed until checked directly with SLIIT."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-it-ai-specialization",
+      "name": "BSc (Hons) Information Technology — Artificial Intelligence specialization",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": [
+        "Aptitude Test conducted by SLIIT",
+        "Minimum GPA requirement (set by faculty) at end of Year 2 Semester 1 to continue in this specialization"
+      ],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ]
+        }
+      ],
+      "notes": [
+        "Entry requirement is the same as the general IT degree; the specialization is chosen after enrolling. The source text hints at an additional Physics + Combined Mathematics requirement specifically to enter this specialization stream, but the sentence was cut off/garbled in the source PDF — unconfirmed, verify with SLIIT before using as a hard filter."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-csne",
+      "name": "BSc (Hons) in Computer Systems & Network Engineering",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": [
+        "Aptitude Test conducted by SLIIT",
+        "Minimum GPA requirement (set by faculty) at end of Year 2 Semester 1"
+      ],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-cybersecurity",
+      "name": "BSc (Hons) in Cyber Security",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": [
+        "Aptitude Test conducted by SLIIT",
+        "Minimum GPA requirement (set by faculty) at end of Year 2 Semester 1"
+      ],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-creative-computing",
+      "name": "BSc (Hons) in Creative Computing",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": [
+        "Aptitude Test conducted by SLIIT",
+        "Selection interview at end of Year 2 Semester 1"
+      ],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-data-science",
+      "name": "BSc (Hons) Data Science",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": [
+        "Aptitude Test conducted by SLIIT",
+        "Minimum GPA requirement (set by faculty) at end of Year 2 Semester 1"
+      ],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-software-engineering",
+      "name": "BSc (Hons) Software Engineering",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": [
+        "Aptitude Test conducted by SLIIT",
+        "Minimum GPA requirement (set by faculty) at end of Year 2 Semester 1"
+      ],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-computer-science",
+      "name": "BSc (Hons) Computer Science",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": ["Special aptitude test conducted by the Faculty of Computing"],
+      "entryPaths": [
+        {
+          "pathId": "physical-science-with-required-subjects",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alSubjectsAllOf", "subjects": ["Combined Mathematics", "Physics"], "minGrade": "S" },
+            {
+              "type": "alSubjectsOneOf",
+              "subjects": ["Chemistry", "Information & Communication Technology (ICT)"],
+              "minGrade": "S",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-computer-systems-engineering",
+      "name": "BSc (Hons) Computer Systems Engineering",
+      "university": "SLIIT",
+      "faculty": "Computing",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "deakin-ai-sliit-pathway",
+      "name": "Bachelor of Artificial Intelligence (Deakin University, Australia — Year 1 at SLIIT)",
+      "university": "Deakin University (via SLIIT)",
+      "faculty": "Computing",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "notes": [
+        "Applicants without at least 3 'C' passes in the Physical Science stream must achieve a 65% weighted average across all first-year modules to progress into Year 2 of this pathway. This is a progression condition, not an entry condition — it doesn't block admission itself."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uq-transfer-cs-it",
+      "name": "Bachelor of Computer Science / Bachelor of Information Technology (University of Queensland, Australia — Year 1 at SLIIT)",
+      "university": "University of Queensland (via SLIIT)",
+      "faculty": "Computing",
+      "duration": "3 years (1 year SLIIT + 2 years UQ)",
+      "pathwayType": "transfer",
+      "extraRequirements": ["Aptitude Test conducted by SLIIT"],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme (includes a compulsory Mathematics module for this pathway)",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-software-engineering",
+      "name": "Bachelor of Science (Hons) Software Engineering (Liverpool John Moores University, UK)",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "Computing",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "entryPaths": [],
+      "dataStatus": "Entry requirements not listed in the source document for this specific programme — confirm directly with SLIIT before using in the matching engine.",
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uwa-transfer-cs",
+      "name": "Bachelor of Science (Computer Science) (University of Western Australia — Year 1 at SLIIT)",
+      "university": "University of Western Australia (via SLIIT)",
+      "faculty": "Computing",
+      "duration": "3 years (1 year SLIIT + 2 years UWA)",
+      "pathwayType": "transfer",
+      "entryPaths": [],
+      "dataStatus": "Entry requirements not listed in the source document for this specific programme — confirm directly with SLIIT before using in the matching engine.",
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uwa-transfer-cs-cybersecurity",
+      "name": "Bachelor of Science (Computer Science & Cyber Security) (University of Western Australia — Year 1 at SLIIT)",
+      "university": "University of Western Australia (via SLIIT)",
+      "faculty": "Computing",
+      "duration": "3 years (1 year SLIIT + 2 years UWA)",
+      "pathwayType": "transfer",
+      "entryPaths": [],
+      "dataStatus": "Entry requirements not listed in the source document for this specific programme — confirm directly with SLIIT before using in the matching engine.",
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    }
+  ]
+}
