@@ -1,20 +1,14 @@
 import { useState, useMemo } from "react";
+import NavBar from "./NavBar";
 import { STREAMS, AL_SUBJECTS_BY_STREAM } from "../data/streams";
 import { GRADE_OPTIONS, GRADE_LABELS } from "../data/grades";
 
-/*
-  Fonts: Lora (headings) + IBM Plex Sans (body/UI).
-  Add to your index.html <head>:
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Lora:wght@500;600&display=swap" rel="stylesheet">
-*/
-
-const INK = "#1A2E44";
-const PAPER = "#F6F5F1";
-const BRASS = "#B8863B";
-const LINE = "#D9D6CC";
-const ALERT = "#B5502D";
+const NAVY = "#0A1F44";
+const NAVY_SOFT = "#3C5A87";
+const ORANGE = "#F5821F";
+const BG = "#FFFFFF";
+const LINE = "#E2E5EA";
+const ALERT = "#D64545";
 
 const OL_SUBJECTS = [
   { key: "Mathematics", label: "Mathematics" },
@@ -23,22 +17,18 @@ const OL_SUBJECTS = [
   { key: "Science", label: "Science" },
 ];
 
+// Question always sits above its answer options — same stacked order on every screen size.
 function FormRow({ question, helper, children }) {
   return (
-    <div
-      className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 py-6"
-      style={{ borderBottom: `1px solid ${LINE}` }}
-    >
-      <div className="order-1 md:w-64 md:flex-shrink-0">{children}</div>
-      <div className="order-2">
-        <p
-          className="text-[15px] font-medium"
-          style={{ color: INK, fontFamily: "'IBM Plex Sans', sans-serif" }}
-        >
-          {question}
-        </p>
-        {helper && <p className="text-sm mt-1 text-[#6B7280]">{helper}</p>}
-      </div>
+    <div className="py-6" style={{ borderBottom: `1px solid ${LINE}` }}>
+      <p
+        className="text-[15px] font-medium mb-3"
+        style={{ color: NAVY, fontFamily: "'IBM Plex Sans', sans-serif" }}
+      >
+        {question}
+      </p>
+      {helper && <p className="text-sm text-[#6B7280] mb-3">{helper}</p>}
+      <div>{children}</div>
     </div>
   );
 }
@@ -46,19 +36,21 @@ function FormRow({ question, helper, children }) {
 function Toggle({ value, onChange, options }) {
   return (
     <div className="inline-flex rounded-lg overflow-hidden border" style={{ borderColor: LINE }}>
-      {options.map((opt) => (
-        <button
-          key={opt.value}
-          type="button"
-          onClick={() => onChange(opt.value)}
-          className="px-4 py-2 text-sm font-medium transition-colors"
-          style={{
-            backgroundColor: value === opt.value ? INK : "#fff",
-            color: value === opt.value ? "#fff" : INK,
-          }}
-        >
-          {opt.label}
-        </button>
+      {options.map((opt, i) => (
+        <div key={opt.value} className="flex items-center">
+          {i > 0 && <span style={{ color: LINE }}>|</span>}
+          <button
+            type="button"
+            onClick={() => onChange(opt.value)}
+            className="px-4 py-2 text-sm font-medium transition-colors"
+            style={{
+              backgroundColor: value === opt.value ? NAVY : "#fff",
+              color: value === opt.value ? "#fff" : NAVY,
+            }}
+          >
+            {opt.label}
+          </button>
+        </div>
       ))}
     </div>
   );
@@ -71,7 +63,7 @@ function GradeSelect({ value, onChange, disabled }) {
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
       className="w-full md:w-56 rounded-lg border px-3 py-2 text-sm bg-white disabled:opacity-40 disabled:cursor-not-allowed"
-      style={{ borderColor: LINE, color: INK }}
+      style={{ borderColor: LINE, color: NAVY }}
     >
       <option value="">Select grade</option>
       {GRADE_OPTIONS.map((g) => (
@@ -145,14 +137,19 @@ export default function ResultsForm({ onSubmit }) {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: PAPER }}>
-      <div className="max-w-2xl mx-auto px-6 py-16">
-        <p className="text-sm tracking-wide" style={{ color: BRASS }}>
-          Degree Pathway Finder
-        </p>
-        <h1 className="text-3xl mt-2 mb-10" style={{ color: INK, fontFamily: "'Lora', serif" }}>
-          Enter your O/L and A/L results
+    <div className="min-h-screen" style={{ backgroundColor: BG }}>
+      <NavBar />
+
+      <div className="max-w-2xl mx-auto px-6 pb-16">
+        <h1
+          className="text-3xl md:text-4xl mb-2"
+          style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}
+        >
+          Let's Begin
         </h1>
+        <p className="text-sm md:text-base mb-10" style={{ color: NAVY_SOFT }}>
+          Tell us about your O/L and A/L results, and we'll handle the rest.
+        </p>
 
         {/* O/L SECTION */}
         <FormRow question="Have you completed your O/Ls?">
@@ -228,7 +225,7 @@ export default function ResultsForm({ onSubmit }) {
                     value={stream}
                     onChange={(e) => handleStreamChange(e.target.value)}
                     className="w-full md:w-64 rounded-lg border px-3 py-2 text-sm bg-white"
-                    style={{ borderColor: LINE, color: INK }}
+                    style={{ borderColor: LINE, color: NAVY }}
                   >
                     <option value="">Select stream</option>
                     {STREAMS.map((s) => (
@@ -247,7 +244,7 @@ export default function ResultsForm({ onSubmit }) {
                           value={alSubjects[i]}
                           onChange={(e) => handleSubjectChange(i, e.target.value)}
                           className="w-full md:w-64 rounded-lg border px-3 py-2 text-sm bg-white"
-                          style={{ borderColor: LINE, color: INK }}
+                          style={{ borderColor: LINE, color: NAVY }}
                         >
                           <option value="">Select subject</option>
                           {availableFor(i).map((s) => (
@@ -274,8 +271,8 @@ export default function ResultsForm({ onSubmit }) {
             type="button"
             disabled={!isComplete}
             onClick={handleSubmit}
-            className="w-full md:w-auto px-8 py-3 rounded-lg font-medium text-white transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
-            style={{ backgroundColor: BRASS }}
+            className="w-full md:w-auto px-8 py-3 rounded-lg font-semibold text-white transition-opacity disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
+            style={{ backgroundColor: ORANGE }}
           >
             Find my degree pathways
           </button>
