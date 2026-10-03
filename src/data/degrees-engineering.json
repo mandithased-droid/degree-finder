@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "institution": "SLIIT",
+    "intake": "2027",
+    "source": "Entry Requirements and Fee Structure - 2027 (SLIIT)",
+    "sameSittingRequiredForAll": true,
+    "scope": "Faculty of Engineering only (excluding Quantity Surveying, which sits under this faculty in the fee table but is being handled separately). Local A/L requirements only.",
+    "conditionTypesUsed": ["alStream", "alGradeDistribution"]
+  },
+  "programmes": [
+    {
+      "id": "sliit-civil-engineering",
+      "name": "BSc Engineering (Hons) in Civil Engineering",
+      "university": "SLIIT",
+      "faculty": "Engineering",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Entry requirement is shared across all Engineering specializations — students confirm their specific field after completing Year 1."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-eee-engineering",
+      "name": "BSc Engineering (Hons) in Electrical & Electronic Engineering",
+      "university": "SLIIT",
+      "faculty": "Engineering",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Entry requirement is shared across all Engineering specializations — students confirm their specific field after completing Year 1."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-mechanical-engineering",
+      "name": "BSc Engineering (Hons) in Mechanical Engineering",
+      "university": "SLIIT",
+      "faculty": "Engineering",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Entry requirement is shared across all Engineering specializations — students confirm their specific field after completing Year 1."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-mechatronics-engineering",
+      "name": "BSc Engineering (Hons) in Mechanical Engineering (Mechatronics Specialization)",
+      "university": "SLIIT",
+      "faculty": "Engineering",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Entry requirement is shared across all Engineering specializations — students confirm their specific field after completing Year 1."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-materials-engineering",
+      "name": "BSc Engineering (Hons) in Materials Engineering",
+      "university": "SLIIT",
+      "faculty": "Engineering",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Entry requirement is shared across all Engineering specializations — students confirm their specific field after completing Year 1."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uq-transfer-engineering",
+      "name": "Bachelor of Engineering (Hons) — Civil / Mechanical / Electrical (University of Queensland, Australia — 2 years at SLIIT)",
+      "university": "University of Queensland (via SLIIT)",
+      "faculty": "Engineering",
+      "duration": "4 years (2 years SLIIT + 2 years UQ)",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uq-transfer-mechatronic",
+      "name": "Bachelor of Engineering (Hons) — Mechatronic (University of Queensland, Australia — 1 year at SLIIT)",
+      "university": "University of Queensland (via SLIIT)",
+      "faculty": "Engineering",
+      "duration": "4 years (1 year SLIIT + 3 years UQ)",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-distribution",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            {
+              "type": "alGradeDistribution",
+              "subjects": ["Combined Mathematics", "Physics", "Chemistry"],
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "edinburgh-transfer-civil",
+      "name": "BEng (Hons) Civil Engineering (University of Edinburgh, UK — 2 years at SLIIT)",
+      "university": "University of Edinburgh (via SLIIT)",
+      "faculty": "Engineering",
+      "duration": "4 years (2 years SLIIT + 2 years Edinburgh)",
+      "pathwayType": "transfer",
+      "entryPaths": [],
+      "dataStatus": "Entry requirements not listed in the source document for this specific pathway — confirm directly with SLIIT before using in the matching engine.",
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "edinburgh-transfer-eee",
+      "name": "BEng (Hons) Electronics & Electrical Engineering (University of Edinburgh, UK — 2 years at SLIIT)",
+      "university": "University of Edinburgh (via SLIIT)",
+      "faculty": "Engineering",
+      "duration": "4 years (2 years SLIIT + 2 years Edinburgh)",
+      "pathwayType": "transfer",
+      "entryPaths": [],
+      "dataStatus": "Entry requirements not listed in the source document for this specific pathway — confirm directly with SLIIT before using in the matching engine.",
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    }
+  ]
+}

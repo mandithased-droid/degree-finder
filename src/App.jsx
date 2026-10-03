@@ -3,7 +3,10 @@ import Landing from "./components/Landing";
 import ResultsForm from "./components/ResultsForm";
 import ResultsView from "./components/ResultsView";
 import { matchDegrees } from "./utils/matcher";
-import degreeData from "./data/degrees-computing.json";
+import computingData from "./data/degrees-computing.json";
+import engineeringData from "./data/degrees-engineering.json";
+
+const allProgrammes = [...computingData.programmes, ...engineeringData.programmes];
 
 function App() {
   const [view, setView] = useState("landing"); // "landing" | "form" | "results"
@@ -19,7 +22,7 @@ function App() {
   }
 
   if (view === "results" && student) {
-    const results = matchDegrees(student, degreeData.programmes);
+    const results = matchDegrees(student, allProgrammes);
     return <ResultsView results={results} onBack={() => setView("form")} />;
   }
 
