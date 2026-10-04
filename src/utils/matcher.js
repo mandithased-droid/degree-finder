@@ -38,6 +38,39 @@ function evaluateCondition(student, cond) {
       };
     }
 
+    case "englishOlOrALGeneral": {
+      const olPass = rank(student.ol.English) >= rank(cond.minGrade);
+      const alPass = rank(student.alGeneralEnglish) >= rank(cond.minGrade);
+      return {
+        pass: olPass || alPass,
+        reason: `Needs a ${cond.minGrade} pass in O/L English or A/L General English`,
+      };
+    }
+
+    case "alMediumEquals": {
+      return {
+        pass: student.alMedium === cond.value,
+        reason: `Requires A/L medium of instruction to be ${cond.value}`,
+      };
+    }
+
+    case "alGeneralEnglishMinGrade": {
+      return {
+        pass: rank(student.alGeneralEnglish) >= rank(cond.minGrade),
+        reason: `Needs a ${cond.minGrade} pass in A/L General English`,
+      };
+    }
+
+    case "alSubjectsFromPool": {
+      const inPool = Object.entries(student.alSubjects).filter(
+        ([subj, grade]) => cond.pool.includes(subj) && rank(grade) >= rank(cond.minGrade)
+      ).length;
+      return {
+        pass: inPool >= cond.count,
+        reason: `Needs at least ${cond.count} of your A/L subjects to be from: ${cond.pool.join(", ")}, at ${cond.minGrade}+`,
+      };
+    }
+
     case "alSubjectPresent": {
       return {
         pass: Boolean(student.alSubjects[cond.subject]),
@@ -73,6 +106,19 @@ function evaluateCondition(student, cond) {
       };
     }
 
+    case "categoryPick": {
+      const allSatisfy = cond.categories.every((cat) => {
+        const matches = cat.chooseFrom.filter(
+          (s) => rank(student.alSubjects[s]) >= rank(cond.minGrade)
+        ).length;
+        return matches >= cat.count;
+      });
+      const desc = cond.categories
+        .map((c) => `${c.count} from [${c.chooseFrom.join(", ")}]`)
+        .join(" and ");
+      return { pass: allSatisfy, reason: `Needs ${desc}, each at ${cond.minGrade}+` };
+    }
+
     case "alGradeDistribution": {
       const grades = cond.subjects
         ? cond.subjects.map((s) => student.alSubjects[s]).filter(Boolean)
@@ -105,6 +151,10 @@ function evaluatePath(student, path) {
   if (pass && path.conditionalExtra) {
     const waived = path.conditionalExtra.waivedIf.every((c) => evaluateCondition(student, c).pass);
     bridgingNeeded = waived ? null : path.conditionalExtra.name;
+  }
+  // Unconditional extra, e.g. "AND completing the Business Bridging Programme" — no waiver option.
+  if (pass && path.alwaysRequires) {
+    bridgingNeeded = path.alwaysRequires;
   }
 
   return { pass, failReasons, bridgingNeeded, pathId: path.pathId };

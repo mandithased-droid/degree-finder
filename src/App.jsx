@@ -5,8 +5,17 @@ import ResultsView from "./components/ResultsView";
 import { matchDegrees } from "./utils/matcher";
 import computingData from "./data/degrees-computing.json";
 import engineeringData from "./data/degrees-engineering.json";
+import businessData from "./data/degrees-business.json";
+import businessAiData from "./data/degrees-business-ai.json";
+import humanitiesSciencesData from "./data/degrees-humanities-sciences.json";
 
-const allProgrammes = [...computingData.programmes, ...engineeringData.programmes];
+const allProgrammes = [
+  ...computingData.programmes,
+  ...engineeringData.programmes,
+  ...businessData.programmes,
+  ...businessAiData.programmes,
+  ...humanitiesSciencesData.programmes,
+];
 
 function App() {
   const [view, setView] = useState("landing"); // "landing" | "form" | "results"

@@ -17,6 +17,7 @@ export const AL_SUBJECTS_BY_STREAM = {
     "Biology",
     "Chemistry",
     "Physics",
+    "Mathematics",
     "Agricultural Science",
   ],
   "Commerce": [

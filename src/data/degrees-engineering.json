@@ -4,15 +4,19 @@
     "intake": "2027",
     "source": "Entry Requirements and Fee Structure - 2027 (SLIIT)",
     "sameSittingRequiredForAll": true,
-    "scope": "Faculty of Engineering only (excluding Quantity Surveying, which sits under this faculty in the fee table but is being handled separately). Local A/L requirements only.",
-    "conditionTypesUsed": ["alStream", "alGradeDistribution"]
+    "scope": "Faculty of Engineering, plus Quantity Surveying and Architecture/Interior Design grouped in here by instruction. Note: the source document actually lists Architecture under a separate 'School of Architecture', not the Faculty of Engineering. Local A/L requirements only.",
+    "conditionTypesUsed": ["alStream", "alGradeDistribution", "categoryPick"],
+    "knownDataGaps": [
+      "Quantity Surveying's Category A accepts 'Higher Mathematics', which isn't offered as a subject option under any stream in this form — only 'Combined Mathematics' from Category A is actually selectable. Students who genuinely took Higher Mathematics can't be matched via this path.",
+      "LJMU Quantity Surveying's accepted stream list includes 'Engineering Technology', an A/L subject taken within our generic 'Technology' stream, not a separate stream name — mapped to the Technology stream here."
+    ]
   },
   "programmes": [
     {
       "id": "sliit-civil-engineering",
       "name": "BSc Engineering (Hons) in Civil Engineering",
       "university": "SLIIT",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years",
       "pathwayType": "local",
       "entryPaths": [
@@ -40,7 +44,7 @@
       "id": "sliit-eee-engineering",
       "name": "BSc Engineering (Hons) in Electrical & Electronic Engineering",
       "university": "SLIIT",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years",
       "pathwayType": "local",
       "entryPaths": [
@@ -68,7 +72,7 @@
       "id": "sliit-mechanical-engineering",
       "name": "BSc Engineering (Hons) in Mechanical Engineering",
       "university": "SLIIT",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years",
       "pathwayType": "local",
       "entryPaths": [
@@ -96,7 +100,7 @@
       "id": "sliit-mechatronics-engineering",
       "name": "BSc Engineering (Hons) in Mechanical Engineering (Mechatronics Specialization)",
       "university": "SLIIT",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years",
       "pathwayType": "local",
       "entryPaths": [
@@ -124,7 +128,7 @@
       "id": "sliit-materials-engineering",
       "name": "BSc Engineering (Hons) in Materials Engineering",
       "university": "SLIIT",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years",
       "pathwayType": "local",
       "entryPaths": [
@@ -152,7 +156,7 @@
       "id": "uq-transfer-engineering",
       "name": "Bachelor of Engineering (Hons) — Civil / Mechanical / Electrical (University of Queensland, Australia — 2 years at SLIIT)",
       "university": "University of Queensland (via SLIIT)",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years (2 years SLIIT + 2 years UQ)",
       "pathwayType": "transfer",
       "entryPaths": [
@@ -177,7 +181,7 @@
       "id": "uq-transfer-mechatronic",
       "name": "Bachelor of Engineering (Hons) — Mechatronic (University of Queensland, Australia — 1 year at SLIIT)",
       "university": "University of Queensland (via SLIIT)",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years (1 year SLIIT + 3 years UQ)",
       "pathwayType": "transfer",
       "entryPaths": [
@@ -202,7 +206,7 @@
       "id": "edinburgh-transfer-civil",
       "name": "BEng (Hons) Civil Engineering (University of Edinburgh, UK — 2 years at SLIIT)",
       "university": "University of Edinburgh (via SLIIT)",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years (2 years SLIIT + 2 years Edinburgh)",
       "pathwayType": "transfer",
       "entryPaths": [],
@@ -210,10 +214,116 @@
       "source": "SLIIT Entry Requirements and Fee Structure - 2027"
     },
     {
+      "id": "sliit-quantity-surveying",
+      "name": "BSc (Hons) Quantity Surveying",
+      "university": "SLIIT",
+      "faculty": "Faculty of Engineering",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "category-pick-with-ol-requirements",
+          "conditions": [
+            {
+              "type": "categoryPick",
+              "minGrade": "S",
+              "categories": [
+                { "name": "A", "chooseFrom": ["Combined Mathematics", "Higher Mathematics"], "count": 1 },
+                {
+                  "name": "B",
+                  "chooseFrom": [
+                    "Accounting", "Economics", "Business Studies", "Business Statistics",
+                    "Physics", "Chemistry", "Information & Communication Technology (ICT)"
+                  ],
+                  "count": 2
+                }
+              ]
+            },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" },
+            { "type": "olSubjectMinGrade", "subject": "Science", "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-quantity-surveying",
+      "name": "BSc (Hons) Quantity Surveying — Liverpool John Moores University, UK",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "Faculty of Engineering",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "physical-science-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Physical Science"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" }
+          ]
+        },
+        {
+          "pathId": "other-accepted-streams",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Biological Science", "Commerce", "Technology"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "B" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-architecture",
+      "name": "BSc (Hons) Architecture — Liverpool John Moores University, UK",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "Faculty of Engineering",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "extraRequirements": ["Special aptitude test conducted by the School of Architecture"],
+      "entryPaths": [
+        {
+          "pathId": "any-stream-with-ol-requirements",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ]
+        }
+      ],
+      "notes": ["Source document lists this under a separate 'School of Architecture', not the Faculty of Engineering — grouped here by instruction."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-interior-design",
+      "name": "BA (Hons) Interior Design — Liverpool John Moores University, UK",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "Faculty of Engineering",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "extraRequirements": ["Special aptitude test conducted by the School of Architecture"],
+      "entryPaths": [
+        {
+          "pathId": "any-stream-with-ol-english-only",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" }
+          ]
+        }
+      ],
+      "notes": [
+        "O/L Mathematics is explicitly not considered for this programme, unlike Architecture above.",
+        "Source document lists this under a separate 'School of Architecture', not the Faculty of Engineering — grouped here by instruction."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
       "id": "edinburgh-transfer-eee",
       "name": "BEng (Hons) Electronics & Electrical Engineering (University of Edinburgh, UK — 2 years at SLIIT)",
       "university": "University of Edinburgh (via SLIIT)",
-      "faculty": "Engineering",
+      "faculty": "Faculty of Engineering",
       "duration": "4 years (2 years SLIIT + 2 years Edinburgh)",
       "pathwayType": "transfer",
       "entryPaths": [],

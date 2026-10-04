@@ -9,7 +9,9 @@ const ORANGE = "#F5821F";
 export default function NavBar() {
   return (
     <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 py-6">
-      <img src="/logo.png" alt="SLIIT" className="h-12" />
+      <a href="/">
+  <img src="/logo.png" alt="SLIIT" className="h-12" />
+</a>
 
       <div className="flex items-center gap-3">
         <a

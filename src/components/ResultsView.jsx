@@ -1,4 +1,6 @@
+import { useState } from "react";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 const NAVY = "#0A1F44";
 const NAVY_SOFT = "#3c8781";
@@ -9,7 +11,24 @@ const LINE = "#E2E5EA";
 const GREEN = "#16A34A";   // eligible
 const RED = "#D64545";     // not eligible
 const AMBER = "#D97706";   // needs checking
-const BLUE = "#012b88";    // Apply now button
+const BLUE = "#2563EB";    // Back button
+
+// Fixed, sensible display order — unlisted faculties fall back to alphabetical at the end.
+const FACULTY_ORDER = [
+  "Faculty of Computing",
+  "Faculty of Engineering",
+  "School of Business",
+  "School of Business & AI",
+  "Faculty of Humanities and Sciences",
+];
+
+const FACULTY_COLORS = {
+  "Faculty of Computing": "#2563EB",
+  "Faculty of Engineering": "#15803D",
+  "School of Business": "#7A1430",
+  "School of Business & AI": "#5B9BD5",
+  "Faculty of Humanities and Sciences": "#7C3AED",
+};
 
 function Badge({ children, color }) {
   return (
@@ -23,7 +42,7 @@ function Badge({ children, color }) {
   );
 }
 
-function DegreeCard({ degree }) {
+function DegreeCard({ degree, delay = 0 }) {
   const statusColor =
     degree.status === "eligible" ? GREEN : degree.status === "unknown" ? AMBER : RED;
   const statusLabel =
@@ -35,8 +54,8 @@ function DegreeCard({ degree }) {
 
   return (
     <div
-      className="rounded-2xl border p-5 md:p-6 bg-white shadow-sm"
-      style={{ borderColor: LINE }}
+      className="rounded-2xl border p-5 md:p-6 bg-white shadow-sm animate-fade-up transition-all hover:-translate-y-0.5 hover:shadow-md"
+      style={{ borderColor: LINE, animationDelay: `${delay}ms` }}
     >
       <div className="flex items-start justify-between gap-4 mb-1">
         <p
@@ -79,9 +98,9 @@ function DegreeCard({ degree }) {
       <div className="pt-2">
         <a
           target="_blank"
-rel="noopener noreferrer"
+          rel="noopener noreferrer"
           href="https://apply.sliit.lk/"
-          className="inline-block px-5 py-2 rounded-lg text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          className="inline-block px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 hover:scale-105 active:scale-95"
           style={{ backgroundColor: ORANGE }}
         >
           Apply now
@@ -91,21 +110,110 @@ rel="noopener noreferrer"
   );
 }
 
+function FilterToggle({ value, onChange, eligibleCount, totalCount }) {
+  const options = [
+    { value: "eligible", label: `Eligible only (${eligibleCount})` },
+    { value: "all", label: `Show all (${totalCount})` },
+  ];
+  return (
+    <div className="inline-flex rounded-lg overflow-hidden border mb-8" style={{ borderColor: LINE }}>
+      {options.map((opt, i) => (
+        <div key={opt.value} className="flex items-center">
+          {i > 0 && <span style={{ color: LINE }}>|</span>}
+          <button
+            type="button"
+            onClick={() => onChange(opt.value)}
+            className="px-4 py-2 text-sm font-medium transition-all active:scale-95"
+            style={{
+              backgroundColor: value === opt.value ? NAVY : "#fff",
+              color: value === opt.value ? "#fff" : NAVY,
+            }}
+          >
+            {opt.label}
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FacultyFilter({ faculties, selected, onToggle }) {
+  return (
+    <div className="flex flex-wrap gap-2 mb-8">
+      {faculties.map((faculty) => {
+        const isOn = selected.includes(faculty);
+        const color = FACULTY_COLORS[faculty] || NAVY;
+        return (
+          <button
+            key={faculty}
+            type="button"
+            onClick={() => onToggle(faculty)}
+            className="text-sm font-medium px-3 py-1.5 rounded-full border transition-all hover:scale-105 active:scale-95"
+            style={
+              isOn
+                ? { backgroundColor: color, borderColor: color, color: "#fff" }
+                : { backgroundColor: "#fff", borderColor: color, color }
+            }
+          >
+            {faculty}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function groupByFaculty(results) {
+  const groups = {};
+  for (const degree of results) {
+    const key = degree.faculty || "Other";
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(degree);
+  }
+  const orderedKeys = [
+    ...FACULTY_ORDER.filter((f) => groups[f]),
+    ...Object.keys(groups).filter((f) => !FACULTY_ORDER.includes(f)).sort(),
+  ];
+  return orderedKeys.map((faculty) => ({ faculty, degrees: groups[faculty] }));
+}
+
 export default function ResultsView({ results, onBack }) {
+  const [filter, setFilter] = useState("eligible");
+
   const eligible = results.filter((d) => d.status === "eligible");
-  const unknown = results.filter((d) => d.status === "unknown");
-  const notEligible = results.filter((d) => d.status === "not-eligible");
+  const statusFiltered = filter === "eligible" ? eligible : results;
+
+  const allFaculties = [
+    ...FACULTY_ORDER.filter((f) => statusFiltered.some((d) => d.faculty === f)),
+    ...[...new Set(statusFiltered.map((d) => d.faculty))]
+      .filter((f) => !FACULTY_ORDER.includes(f))
+      .sort(),
+  ];
+
+  // Track explicitly turned-off faculties, not the selected set — so a faculty that only
+  // appears after switching filters (e.g. "Eligible only" -> "Show all") shows by default.
+  const [deselectedFaculties, setDeselectedFaculties] = useState([]);
+  const selectedFaculties = allFaculties.filter((f) => !deselectedFaculties.includes(f));
+
+  const toggleFaculty = (faculty) => {
+    setDeselectedFaculties((prev) =>
+      prev.includes(faculty) ? prev.filter((f) => f !== faculty) : [...prev, faculty]
+    );
+  };
+
+  const filtered = statusFiltered.filter((d) => selectedFaculties.includes(d.faculty));
+  const facultyGroups = groupByFaculty(filtered);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: BG }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: BG }}>
       <NavBar />
 
-      <div className="max-w-2xl mx-auto px-6 pb-16">
+      <div className="flex-1 max-w-2xl mx-auto px-6 pb-16 w-full">
         <button
           type="button"
           onClick={onBack}
-          className="text-sm mb-6 font-medium"
-          style={{ color: BLUE }}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg border mb-6 bg-white transition-opacity hover:opacity-90"
+          style={{ color: BLUE, borderColor: BLUE }}
         >
           ← Back
         </button>
@@ -116,49 +224,76 @@ export default function ResultsView({ results, onBack }) {
         >
           Your pathway results
         </h1>
-        <p className="text-sm md:text-base mb-10" style={{ color: NAVY_SOFT }}>
-          {eligible.length} eligible · {notEligible.length} not eligible · {unknown.length} need checking
+        <p className="text-sm md:text-base mb-6" style={{ color: NAVY_SOFT }}>
+          {eligible.length} of {results.length} programmes you're eligible for
         </p>
 
-        {eligible.length > 0 && (
-          <>
-            <h2 className="text-lg mb-3" style={{ color: GREEN, fontFamily: "'Sora', sans-serif" }}>
-              You're eligible for
-            </h2>
-            <div className="flex flex-col gap-4 mb-10">
-              {eligible.map((d) => (
-                <DegreeCard key={d.id} degree={d} />
-              ))}
-            </div>
-          </>
+        <FilterToggle
+          value={filter}
+          onChange={setFilter}
+          eligibleCount={eligible.length}
+          totalCount={results.length}
+        />
+
+        <FacultyFilter
+          faculties={allFaculties}
+          selected={selectedFaculties}
+          onToggle={toggleFaculty}
+        />
+
+        {filtered.length === 0 && (
+          <div
+            className="rounded-2xl border p-6 text-sm text-center"
+            style={{ borderColor: LINE, color: NAVY_SOFT }}
+          >
+            {selectedFaculties.length === 0 ? (
+              <>No faculties selected — turn at least one back on above to see results.</>
+            ) : (
+              <>
+                No eligible programmes found with your current results or faculty selection. Try{" "}
+                <button
+                  type="button"
+                  onClick={() => setFilter("all")}
+                  className="underline font-medium"
+                  style={{ color: NAVY }}
+                >
+                  showing all programmes
+                </button>{" "}
+                to see what's close, or go back and double-check your answers.
+              </>
+            )}
+          </div>
         )}
 
-        {unknown.length > 0 && (
-          <>
-            <h2 className="text-lg mb-3" style={{ color: AMBER, fontFamily: "'Sora', sans-serif" }}>
-              Requirements not confirmed yet
-            </h2>
-            <div className="flex flex-col gap-4 mb-10">
-              {unknown.map((d) => (
-                <DegreeCard key={d.id} degree={d} />
-              ))}
+        {(() => {
+          let cardIndex = 0;
+          return facultyGroups.map(({ faculty, degrees }) => (
+            <div key={faculty} className="mb-10">
+              <h2
+                className="text-2xl md:text-3xl mb-4 flex items-center gap-2"
+                style={{
+                  color: FACULTY_COLORS[faculty] || NAVY,
+                  fontFamily: "'Sora', sans-serif",
+                  fontWeight: 700,
+                }}
+              >
+                {faculty}
+                <span className="text-base font-normal" style={{ color: NAVY_SOFT }}>
+                  ({degrees.length})
+                </span>
+              </h2>
+              <div className="flex flex-col gap-4">
+                {degrees.map((d) => {
+                  const delay = Math.min(cardIndex++, 8) * 50;
+                  return <DegreeCard key={d.id} degree={d} delay={delay} />;
+                })}
+              </div>
             </div>
-          </>
-        )}
-
-        {notEligible.length > 0 && (
-          <>
-            <h2 className="text-lg mb-3" style={{ color: RED, fontFamily: "'Sora', sans-serif" }}>
-              Not eligible right now
-            </h2>
-            <div className="flex flex-col gap-4">
-              {notEligible.map((d) => (
-                <DegreeCard key={d.id} degree={d} />
-              ))}
-            </div>
-          </>
-        )}
+          ));
+        })()}
       </div>
+
+      <Footer />
     </div>
   );
 }

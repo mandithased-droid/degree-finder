@@ -1,0 +1,359 @@
+{
+  "meta": {
+    "institution": "SLIIT",
+    "intake": "2027",
+    "source": "Entry Requirements and Fee Structure - 2027 (SLIIT)",
+    "sameSittingRequiredForAll": true,
+    "scope": "Faculty of Humanities & Sciences only. Local A/L requirements only.",
+    "conditionTypesUsed": [
+      "alMinPasses",
+      "alStream",
+      "olSubjectMinGrade",
+      "alSubjectPresent",
+      "alSubjectsAllOf",
+      "alSubjectsOneOf",
+      "alSubjectsFromPool",
+      "alGeneralEnglishMinGrade",
+      "alGradeDistribution",
+      "alMediumEquals"
+    ],
+    "knownDataGaps": [
+      "Nursing's accepted streams include 'Bio Systems Technology' and 'Engineering Technology', which are A/L subjects taken within our generic 'Technology' stream, not separate stream names — mapped to the Technology stream here; may need manual review for borderline cases.",
+      "The foundation-certificate alternate admission route (Nursing, LJMU Psychology, Monash Psychology) is intentionally deferred — it doesn't depend on O/L/A/L grades at all, so it needs a different kind of form question and matching logic than everything else in this system. Revisit once the rest of the data is in place."
+    ]
+  },
+  "programmes": [
+    {
+      "id": "sliit-biomedical-science",
+      "name": "BSc (Hons) Biomedical Science",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "biology-chemistry-plus-one",
+          "conditions": [
+            { "type": "alSubjectsAllOf", "subjects": ["Biology", "Chemistry"], "minGrade": "S" },
+            {
+              "type": "alSubjectsOneOf",
+              "subjects": ["Physics", "Agricultural Science", "Mathematics"],
+              "minGrade": "S",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "monash-transfer-biomedical-science",
+      "name": "Bachelor of Biomedical Science (Monash University, Australia — 1 year at SLIIT)",
+      "university": "Monash University (via SLIIT)",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "3 years (1 year SLIIT + 2 years Monash)",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "biology-chemistry-plus-one",
+          "conditions": [
+            { "type": "alSubjectsAllOf", "subjects": ["Biology", "Chemistry"], "minGrade": "S" },
+            {
+              "type": "alSubjectsOneOf",
+              "subjects": ["Physics", "Agricultural Science", "Mathematics"],
+              "minGrade": "S",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-biotechnology",
+      "name": "BSc (Hons) Biotechnology",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "subject-pool",
+          "conditions": [
+            {
+              "type": "alSubjectsFromPool",
+              "pool": [
+                "Biology", "Chemistry", "Physics", "Combined Mathematics", "Higher Mathematics",
+                "Agricultural Science", "Science for Technology", "Biosystems Technology",
+                "Information & Communication Technology (ICT)"
+              ],
+              "count": 3,
+              "minGrade": "S"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Source document also accepts 'Agro Technology' and 'Bio-Resource Technology', which aren't in this form's subject lists (close variants of Biosystems Technology) — not included in the pool above."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-financial-math-applied-stats",
+      "name": "BSc (Hons) Financial Mathematics & Applied Statistics",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "any-stream-with-combined-maths",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alSubjectsAllOf", "subjects": ["Combined Mathematics"], "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-english-studies",
+      "name": "BA (Hons) in English Studies",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "english-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "English" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "english-medium",
+          "conditions": [
+            { "type": "alMediumEquals", "value": "English" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bed-english",
+      "name": "BEd (Hons) in English",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "english-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "English" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bed-social-sciences",
+      "name": "BEd (Hons) in Social Sciences",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "arts-or-commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Arts", "Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bed-physical-sciences",
+      "name": "BEd (Hons) Physical Sciences",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "combined-maths-and-physics",
+          "conditions": [
+            { "type": "alSubjectsAllOf", "subjects": ["Combined Mathematics", "Physics"], "minGrade": "S" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bed-biological-sciences",
+      "name": "BEd (Hons) Biological Sciences",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "biology-and-chemistry",
+          "conditions": [
+            { "type": "alSubjectsAllOf", "subjects": ["Biology", "Chemistry"], "minGrade": "S" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bed-it",
+      "name": "BEd (Hons) Information Technology",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-higher-diploma-nursing",
+      "name": "Higher Diploma in Nursing (leading to Bachelor of Nursing, Deakin University, Australia)",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "3 years",
+      "pathwayType": "local",
+      "extraRequirements": ["Interview by the School of Nursing"],
+      "entryPaths": [
+        {
+          "pathId": "accepted-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Biological Science", "Physical Science", "Technology"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" }
+          ]
+        }
+      ],
+      "notes": [
+        "An alternative route via the SLIIT CITY UNI Foundation Certificate in Health & Life Sciences also exists in the source document — not modeled yet, deferred for a later pass."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-psychology",
+      "name": "BSc (Hons) Psychology",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": ["Interview by the School of Psychology"],
+      "entryPaths": [
+        {
+          "pathId": "any-stream-with-general-english",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alGeneralEnglishMinGrade", "minGrade": "S" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-psychology",
+      "name": "BSc (Hons) Psychology — Liverpool John Moores University, UK",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "extraRequirements": ["Interview by the School of Psychology"],
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "notes": [
+        "An alternative route via a SLIIT-approved foundation programme also exists in the source document — not modeled yet, deferred for a later pass."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "monash-transfer-psychology",
+      "name": "Bachelor of Psychology (Monash University, Australia — 1 year at SLIIT)",
+      "university": "Monash University (via SLIIT)",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "3 years (1 year SLIIT + 2 years Monash)",
+      "pathwayType": "transfer",
+      "extraRequirements": ["Interview by the School of Psychology"],
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "notes": [
+        "An alternative route via a SLIIT-approved foundation programme also exists in the source document — not modeled yet, deferred for a later pass."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-law",
+      "name": "Bachelor of Laws (Hons)",
+      "university": "SLIIT",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": ["Interview by the School of Law"],
+      "entryPaths": [
+        {
+          "pathId": "distribution-with-ol-languages",
+          "conditions": [
+            {
+              "type": "alGradeDistribution",
+              "distribution": [
+                { "minGrade": "C", "count": 2 },
+                { "minGrade": "S", "count": 1 }
+              ]
+            },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" },
+            { "type": "olSubjectMinGrade", "subject": "Sinhala/Tamil", "minGrade": "C" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-law",
+      "name": "LLB (Hons) Law — Liverpool John Moores University, UK",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "Faculty of Humanities and Sciences",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "extraRequirements": ["Interview by the School of Law"],
+      "entryPaths": [
+        {
+          "pathId": "any-stream-with-ol-english",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" }
+          ]
+        }
+      ],
+      "notes": [
+        "The source document separately mentions Sri Lanka Law College's own Special Entrance Examination (2 credit passes + 1 simple pass at A/L, plus O/L credit passes in English and Sinhala/Tamil) — this is an external, independent qualification route, not part of this SLIIT/LJMU degree's entry requirement, and is not modeled as a separate programme here."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    }
+  ]
+}

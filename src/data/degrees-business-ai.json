@@ -1,0 +1,219 @@
+{
+  "meta": {
+    "institution": "SLIIT",
+    "intake": "2027",
+    "source": "Entry Requirements and Fee Structure - 2027 (SLIIT)",
+    "sameSittingRequiredForAll": true,
+    "scope": "School of Business and AI only. Local A/L requirements only.",
+    "conditionTypesUsed": [
+      "alMinPasses",
+      "alStream",
+      "olSubjectMinGrade",
+      "alSubjectPresent",
+      "englishOlOrALGeneral"
+    ],
+    "notes": [
+      "The source document's intro note — 'Applicants are also required to pass the Aptitude Test conducted by SLIIT in addition to fulfilling the entry requirement stated below' — appears before the entire requirements section, suggesting a general SLIIT-wide aptitude test for all undergraduate applicants, separate from the faculty-specific tests mentioned per-programme elsewhere. This has only been attached as an extraRequirement to the IT-group programmes in degrees-computing.json so far; it may need to be added retroactively across Computing, Engineering and Business School too.",
+      "BBA Special (Hons) — Business and AI and — Financial Technology have no separate entry requirement block in the source document, so the general BBA entrance (shared with most other specializations) is used here, same as Business Management, Marketing Management, etc. in degrees-business.json.",
+      "Management Information Systems (MIS) is a BBA specialization that the fee table places under this faculty rather than the general Business School section — added here, not in degrees-business.json, to avoid a duplicate."
+    ]
+  },
+  "programmes": [
+    {
+      "id": "sliit-bba-business-ai",
+      "name": "BBA Special (Hons) Degree — Business and AI",
+      "university": "SLIIT",
+      "faculty": "School of Business & AI",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["No separate entry requirement listed in the source document for this specialization — general BBA entrance assumed."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-fintech",
+      "name": "BBA Special (Hons) Degree — Financial Technology",
+      "university": "SLIIT",
+      "faculty": "School of Business & AI",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["No separate entry requirement listed in the source document for this specialization — general BBA entrance assumed."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-mis",
+      "name": "BBA Special (Hons) Degree — Management Information Systems (MIS)",
+      "university": "SLIIT",
+      "faculty": "School of Business & AI",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["No separate entry requirement listed in the source document for this specialization — general BBA entrance assumed."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-ise",
+      "name": "BSc (Hons) in Information Systems Engineering",
+      "university": "SLIIT",
+      "faculty": "School of Business & AI",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "extraRequirements": ["Minimum GPA requirement (set by faculty) at end of Year 2 Semester 1"],
+      "entryPaths": [
+        {
+          "pathId": "science-or-tech-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "oneOf": ["Physical Science", "Technology"] }
+          ]
+        },
+        {
+          "pathId": "other-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "alStream", "notOneOf": ["Physical Science", "Technology"] },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+          ],
+          "conditionalExtra": {
+            "name": "IT Bridging Programme",
+            "waivedIf": [
+              { "type": "alSubjectPresent", "subject": "Information & Communication Technology (ICT)" },
+              { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" }
+            ]
+          }
+        }
+      ],
+      "notes": [
+        "Entry requirement is identical to the shared IT-group requirement used for several Computing degrees — this programme's eligibility block in the source document is the same text, listed separately."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uq-transfer-business-management",
+      "name": "Bachelor of Business Management (University of Queensland, Australia — 1 year at SLIIT)",
+      "university": "University of Queensland (via SLIIT)",
+      "faculty": "School of Business & AI",
+      "duration": "3 years (1 year SLIIT + 2 years UQ)",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uq-transfer-commerce",
+      "name": "Bachelor of Commerce (University of Queensland, Australia — 1 year at SLIIT)",
+      "university": "University of Queensland (via SLIIT)",
+      "faculty": "School of Business & AI",
+      "duration": "3 years (1 year SLIIT + 2 years UQ)",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "uq-transfer-economics",
+      "name": "Bachelor of Economics (University of Queensland, Australia — 1 year at SLIIT)",
+      "university": "University of Queensland (via SLIIT)",
+      "faculty": "School of Business & AI",
+      "duration": "3 years (1 year SLIIT + 2 years UQ)",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    }
+  ]
+}

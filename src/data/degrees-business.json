@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "institution": "SLIIT",
+    "intake": "2027",
+    "source": "Entry Requirements and Fee Structure - 2027 (SLIIT)",
+    "sameSittingRequiredForAll": true,
+    "scope": "Business School only (excludes School of Business and AI, handled separately). Local A/L requirements only.",
+    "conditionTypesUsed": [
+      "alMinPasses",
+      "alStream",
+      "olSubjectMinGrade",
+      "alSubjectPresent",
+      "englishOlOrALGeneral"
+    ],
+    "notes": [
+      "The BBA Special (Hons) Degree is offered with multiple specializations, all sharing the same general entry requirement except Accounting & Finance, which has its own special entry test (kept as a separate entry below).",
+      "Management Information Systems (MIS) is a BBA specialization but is listed under 'School of Business and AI' in the fee table, not here — it will be added when that faculty's data is built, not in this file."
+    ]
+  },
+  "programmes": [
+    {
+      "id": "sliit-bba-business-management",
+      "name": "BBA Special (Hons) Degree — Business Management",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["Entry requirement is the general BBA requirement; the source document does not list a separate requirement for this specialization."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-human-capital-management",
+      "name": "BBA Special (Hons) Degree — Human Capital Management",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["Entry requirement is the general BBA requirement; the source document does not list a separate requirement for this specialization."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-marketing-management",
+      "name": "BBA Special (Hons) Degree — Marketing Management",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["Entry requirement is the general BBA requirement; the source document does not list a separate requirement for this specialization."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-accounting-finance",
+      "name": "BBA (Hons) specializing in Accounting & Finance",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-accounting-main-subject",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alSubjectPresent", "subject": "Accounting" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-ol-accounting",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "C" },
+            { "type": "olSubjectMinGrade", "subject": "Business & Accounting Studies", "minGrade": "C" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        }
+      ],
+      "notes": ["This specialization has its own special entry requirement, distinct from the general BBA entrance used by the other specializations."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-logistics-supply-chain",
+      "name": "BBA Special (Hons) Degree — Logistics & Supply Chain Management",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["Entry requirement is the general BBA requirement; the source document does not list a separate requirement for this specialization."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-business-analytics",
+      "name": "BBA Special (Hons) Degree — Business Analytics",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["Entry requirement is the general BBA requirement; the source document does not list a separate requirement for this specialization."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "sliit-bba-quality-management",
+      "name": "BBA Special (Hons) Degree — Quality Management",
+      "university": "SLIIT",
+      "faculty": "School of Business",
+      "duration": "4 years",
+      "pathwayType": "local",
+      "entryPaths": [
+        {
+          "pathId": "commerce-stream",
+          "conditions": [
+            { "type": "alStream", "oneOf": ["Commerce"] },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "economics-main-subject",
+          "conditions": [
+            { "type": "alSubjectPresent", "subject": "Economics" },
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ]
+        },
+        {
+          "pathId": "any-stream-with-bridging",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "Mathematics", "minGrade": "S" },
+            { "type": "englishOlOrALGeneral", "minGrade": "S" }
+          ],
+          "alwaysRequires": "Business Bridging Programme"
+        }
+      ],
+      "notes": ["Entry requirement is the general BBA requirement; the source document does not list a separate requirement for this specialization."],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "ljmu-bba",
+      "name": "Bachelor of Business Administration (Hons) — Liverpool John Moores University, UK",
+      "university": "LJMU (via SLIIT)",
+      "faculty": "School of Business",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
+        }
+      ],
+      "notes": [
+        "Year 3 of this degree starts in February each year. To progress, students need a 'C' pass (or equivalent) for O/L English, must complete up to Year 2 Semester 2 of the SLIIT BBA, and must pass a separate bridging module offered in November (additional fee) — these are progression conditions, not entry conditions."
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    },
+    {
+      "id": "mmu-fashion-business",
+      "name": "BSc (Hons) Fashion Business & Management — Manchester Metropolitan University, UK",
+      "university": "MMU (via SLIIT)",
+      "faculty": "School of Business",
+      "duration": "3 years",
+      "pathwayType": "transfer",
+      "entryPaths": [
+        {
+          "pathId": "any-stream",
+          "conditions": [
+            { "type": "alMinPasses", "count": 3, "minGrade": "S" },
+            { "type": "olSubjectMinGrade", "subject": "English", "minGrade": "C" }
+          ]
+        }
+      ],
+      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
+    }
+  ]
+}

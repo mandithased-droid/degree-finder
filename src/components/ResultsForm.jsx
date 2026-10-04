@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 import { STREAMS, AL_SUBJECTS_BY_STREAM } from "../data/streams";
 import { GRADE_OPTIONS, GRADE_LABELS } from "../data/grades";
 
@@ -18,9 +19,13 @@ const OL_SUBJECTS = [
 ];
 
 // Question always sits above its answer options — same stacked order on every screen size.
-function FormRow({ question, helper, children }) {
+// delay (ms) staggers multiple rows that appear at the same moment, e.g. the 4 O/L subject rows.
+function FormRow({ question, helper, children, delay = 0 }) {
   return (
-    <div className="py-6" style={{ borderBottom: `1px solid ${LINE}` }}>
+    <div
+      className="py-6 animate-fade-up"
+      style={{ borderBottom: `1px solid ${LINE}`, animationDelay: `${delay}ms` }}
+    >
       <p
         className="text-[15px] font-medium mb-3"
         style={{ color: NAVY, fontFamily: "'IBM Plex Sans', sans-serif" }}
@@ -42,7 +47,7 @@ function Toggle({ value, onChange, options }) {
           <button
             type="button"
             onClick={() => onChange(opt.value)}
-            className="px-4 py-2 text-sm font-medium transition-colors"
+            className="px-4 py-2 text-sm font-medium transition-all active:scale-95"
             style={{
               backgroundColor: value === opt.value ? NAVY : "#fff",
               color: value === opt.value ? "#fff" : NAVY,
@@ -78,13 +83,21 @@ function GradeSelect({ value, onChange, disabled }) {
 export default function ResultsForm({ onSubmit }) {
   const [doneOL, setDoneOL] = useState("");
   const [olPassCategory, setOlPassCategory] = useState("");
-  const [ol, setOl] = useState({ Mathematics: "", English: "", "Sinhala/Tamil": "", Science: "" });
+  const [ol, setOl] = useState({
+    Mathematics: "",
+    English: "",
+    "Sinhala/Tamil": "",
+    Science: "",
+    "Business & Accounting Studies": "",
+  });
 
   const [doneAL, setDoneAL] = useState("");
   const [alPassCategory, setAlPassCategory] = useState("");
   const [stream, setStream] = useState("");
   const [alSubjects, setAlSubjects] = useState(["", "", ""]);
   const [alGrades, setAlGrades] = useState(["", "", ""]);
+  const [alGeneralEnglish, setAlGeneralEnglish] = useState("");
+  const [alMedium, setAlMedium] = useState("");
 
   const streamSubjects = stream ? AL_SUBJECTS_BY_STREAM[stream] : [];
 
@@ -112,7 +125,8 @@ export default function ResultsForm({ onSubmit }) {
   const isComplete = useMemo(() => {
     if (doneOL !== "yes") return doneOL === "no";
     if (!olPassCategory) return false;
-    if (Object.values(ol).some((g) => !g)) return false;
+    const requiredOlSubjects = ["Mathematics", "English", "Sinhala/Tamil", "Science"];
+    if (requiredOlSubjects.some((subj) => !ol[subj])) return false;
     if (doneAL !== "yes") return doneAL === "no";
     if (!alPassCategory || !stream) return false;
     if (alSubjects.some((s) => !s) || alGrades.some((g) => !g)) return false;
@@ -127,6 +141,8 @@ export default function ResultsForm({ onSubmit }) {
       doneAL: doneAL === "yes",
       alPassCategory,
       stream,
+      alGeneralEnglish,
+      alMedium,
       alSubjects: alSubjects.reduce((acc, subj, i) => {
         if (subj) acc[subj] = alGrades[i];
         return acc;
@@ -137,10 +153,10 @@ export default function ResultsForm({ onSubmit }) {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: BG }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: BG }}>
       <NavBar />
 
-      <div className="max-w-2xl mx-auto px-6 pb-16">
+      <div className="flex-1 max-w-2xl mx-auto px-6 pb-16 w-full">
         <h1
           className="text-3xl md:text-4xl mb-2"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}
@@ -183,11 +199,21 @@ export default function ResultsForm({ onSubmit }) {
               />
             </FormRow>
 
-            {OL_SUBJECTS.map(({ key, label }) => (
-              <FormRow key={key} question={`O/L ${label} result`}>
+            {OL_SUBJECTS.map(({ key, label }, i) => (
+              <FormRow key={key} question={`O/L ${label} result`} delay={i * 60}>
                 <GradeSelect value={ol[key]} onChange={(v) => setOl({ ...ol, [key]: v })} />
               </FormRow>
             ))}
+
+            <FormRow
+              question="O/L Business & Accounting Studies result"
+              helper="Optional — only answer this if you sat this subject at O/L."
+            >
+              <GradeSelect
+                value={ol["Business & Accounting Studies"]}
+                onChange={(v) => setOl({ ...ol, "Business & Accounting Studies": v })}
+              />
+            </FormRow>
 
             {/* A/L SECTION */}
             <FormRow question="Have you completed your A/Ls?">
@@ -238,7 +264,7 @@ export default function ResultsForm({ onSubmit }) {
 
                 {stream &&
                   [0, 1, 2].map((i) => (
-                    <FormRow key={i} question={`A/L subject ${i + 1}`}>
+                    <FormRow key={i} question={`A/L subject ${i + 1}`} delay={i * 60}>
                       <div className="flex flex-col gap-2">
                         <select
                           value={alSubjects[i]}
@@ -261,6 +287,28 @@ export default function ResultsForm({ onSubmit }) {
                       </div>
                     </FormRow>
                   ))}
+
+                <FormRow
+                  question="A/L General English result"
+                  helper="Optional — this is the common General English paper, separate from your 3 main subjects. Leave unselected if you don't have a result for it."
+                >
+                  <GradeSelect value={alGeneralEnglish} onChange={setAlGeneralEnglish} />
+                </FormRow>
+
+                <FormRow
+                  question="What was your A/L medium of instruction?"
+                  helper="Optional — only relevant for a small number of programmes."
+                >
+                  <Toggle
+                    value={alMedium}
+                    onChange={setAlMedium}
+                    options={[
+                      { value: "Sinhala", label: "Sinhala" },
+                      { value: "Tamil", label: "Tamil" },
+                      { value: "English", label: "English" },
+                    ]}
+                  />
+                </FormRow>
               </>
             )}
           </>
@@ -271,13 +319,15 @@ export default function ResultsForm({ onSubmit }) {
             type="button"
             disabled={!isComplete}
             onClick={handleSubmit}
-            className="w-full md:w-auto px-8 py-3 rounded-lg font-semibold text-white transition-opacity disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
+            className="w-full md:w-auto px-8 py-3 rounded-lg font-semibold text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 hover:scale-[1.02] active:scale-95"
             style={{ backgroundColor: ORANGE }}
           >
             Find my degree pathways
           </button>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
