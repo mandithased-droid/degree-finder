@@ -169,51 +169,6 @@
         "Entry requirement is identical to the shared IT-group requirement used for several Computing degrees — this programme's eligibility block in the source document is the same text, listed separately."
       ],
       "source": "SLIIT Entry Requirements and Fee Structure - 2027"
-    },
-    {
-      "id": "uq-transfer-business-management",
-      "name": "Bachelor of Business Management (University of Queensland, Australia — 1 year at SLIIT)",
-      "university": "University of Queensland (via SLIIT)",
-      "faculty": "School of Business & AI",
-      "duration": "3 years (1 year SLIIT + 2 years UQ)",
-      "pathwayType": "transfer",
-      "entryPaths": [
-        {
-          "pathId": "any-stream",
-          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
-        }
-      ],
-      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
-    },
-    {
-      "id": "uq-transfer-commerce",
-      "name": "Bachelor of Commerce (University of Queensland, Australia — 1 year at SLIIT)",
-      "university": "University of Queensland (via SLIIT)",
-      "faculty": "School of Business & AI",
-      "duration": "3 years (1 year SLIIT + 2 years UQ)",
-      "pathwayType": "transfer",
-      "entryPaths": [
-        {
-          "pathId": "any-stream",
-          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
-        }
-      ],
-      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
-    },
-    {
-      "id": "uq-transfer-economics",
-      "name": "Bachelor of Economics (University of Queensland, Australia — 1 year at SLIIT)",
-      "university": "University of Queensland (via SLIIT)",
-      "faculty": "School of Business & AI",
-      "duration": "3 years (1 year SLIIT + 2 years UQ)",
-      "pathwayType": "transfer",
-      "entryPaths": [
-        {
-          "pathId": "any-stream",
-          "conditions": [{ "type": "alMinPasses", "count": 3, "minGrade": "S" }]
-        }
-      ],
-      "source": "SLIIT Entry Requirements and Fee Structure - 2027"
     }
   ]
 }
