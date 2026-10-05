@@ -9,25 +9,23 @@ const ORANGE = "#F5821F";
 export default function NavBar() {
   return (
     <nav className="relative z-10 flex items-center justify-between px-6 md:px-12 py-6">
-      <a href="/">
-  <img src="/logo.png" alt="SLIIT" className="h-12" />
-</a>
+      <img src="/logo.png" alt="SLIIT" className="h-8 md:h-12" />
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 md:gap-3">
         <a
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.sliit.lk/"
-          className="px-4 py-2 rounded-lg text-sm font-medium border transition-colors"
+          className="whitespace-nowrap px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm rounded-lg font-medium border transition-colors"
           style={{ borderColor: NAVY, color: NAVY }}
         >
           Visit SLIIT
         </a>
         <a
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
-          href="https://apply.sliit.lk/"
-          className="px-4 py-2 rounded-lg text-sm font-medium text-white transition-opacity hover:opacity-90"
+          className="whitespace-nowrap px-3 py-1.5 text-xs md:px-4 md:py-2 md:text-sm rounded-lg font-medium text-white transition-opacity hover:opacity-90"
           style={{ backgroundColor: ORANGE }}
         >
           Apply now

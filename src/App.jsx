@@ -32,7 +32,7 @@ function App() {
 
   if (view === "results" && student) {
     const results = matchDegrees(student, allProgrammes);
-    return <ResultsView results={results} onBack={() => setView("form")} />;
+    return <ResultsView results={results} student={student} onBack={() => setView("form")} />;
   }
 
   return <ResultsForm onSubmit={handleSubmit} />;

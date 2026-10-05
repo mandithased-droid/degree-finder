@@ -16,7 +16,7 @@ export default function Landing({ onStart }) {
           className="text-4xl md:text-6xl leading-tight max-w-2xl animate-fade-up"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700, animationDelay: "0ms" }}
         >
-          Not sure what to study? Let's find your Path.
+          Not Sure What to Study? Let's Find Your Path.
         </h1>
 
         <p

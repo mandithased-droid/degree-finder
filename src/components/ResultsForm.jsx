@@ -1,8 +1,9 @@
 import { useState, useMemo } from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import SifRecommendation from "./SifRecommendation";
 import { STREAMS, AL_SUBJECTS_BY_STREAM } from "../data/streams";
-import { GRADE_OPTIONS, GRADE_LABELS } from "../data/grades";
+import { GRADE_OPTIONS, GRADE_LABELS, GRADE_RANK } from "../data/grades";
 
 const NAVY = "#0A1F44";
 const NAVY_SOFT = "#3C5A87";
@@ -80,6 +81,36 @@ function GradeSelect({ value, onChange, disabled }) {
   );
 }
 
+// Shown whenever a student's O/L results rule out every degree pathway — PDP has no entry
+// requirements, so it's always a valid next step regardless of O/L outcome.
+function PdpRedirect({
+  heading = "A degree pathway isn't the right fit yet — but Professional Development Programmes are.",
+  body = "SLIIT's Professional Development Programmes (PDP) are open to anyone — no O/L results required. They cover short courses and certificates across IT, Business, and Engineering, and can be a great starting point no matter where you are in your education.",
+}) {
+  return (
+    <div
+      className="my-6 p-6 rounded-2xl animate-fade-up"
+      style={{ backgroundColor: "#F3F4F6", border: `1px solid ${LINE}` }}
+    >
+      <p className="font-semibold text-base mb-2" style={{ color: NAVY, fontFamily: "'Sora', sans-serif" }}>
+        {heading}
+      </p>
+      <p className="text-sm mb-4" style={{ color: "#4B5563" }}>
+        {body}
+      </p>
+      <a
+        href="https://www.sliit.lk/study/professional-programmes"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-block px-6 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 hover:scale-105 active:scale-95"
+        style={{ backgroundColor: ORANGE }}
+      >
+        Explore PDP Courses
+      </a>
+    </div>
+  );
+}
+
 export default function ResultsForm({ onSubmit }) {
   const [doneOL, setDoneOL] = useState("");
   const [olPassCategory, setOlPassCategory] = useState("");
@@ -122,6 +153,17 @@ export default function ResultsForm({ onSubmit }) {
     setAlGrades(next);
   };
 
+  const olBelowCThreshold =
+    (ol.Mathematics && GRADE_RANK[ol.Mathematics] < GRADE_RANK.C) ||
+    (ol.English && GRADE_RANK[ol.English] < GRADE_RANK.C);
+
+  // Only "no O/Ls at all" is a true hard stop — you can't sit A/Ls or apply to any SLIIT
+  // degree without having done O/Ls. Fewer-than-6-passes and weak Maths/English are shown
+  // as PDP suggestions, but don't block the A/L section: plenty of pathways (most transfer
+  // degrees, several BEd programmes) don't require specific O/L subjects at all — the
+  // matcher already checks O/L conditions per-degree where they actually matter.
+  const isPdpActive = doneOL === "no";
+
   const isComplete = useMemo(() => {
     if (doneOL !== "yes") return doneOL === "no";
     if (!olPassCategory) return false;
@@ -161,10 +203,10 @@ export default function ResultsForm({ onSubmit }) {
           className="text-3xl md:text-4xl mb-2"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}
         >
-          Let's Begin
+          Let's Get Started!
         </h1>
         <p className="text-sm md:text-base mb-10" style={{ color: NAVY_SOFT }}>
-          Tell us about your O/L and A/L results, and we'll handle the rest.
+          Tell us about your Academic Background, and we'll handle the rest.
         </p>
 
         {/* O/L SECTION */}
@@ -179,12 +221,7 @@ export default function ResultsForm({ onSubmit }) {
           />
         </FormRow>
 
-        {doneOL === "no" && (
-          <div className="py-6 text-sm" style={{ color: ALERT, borderBottom: `1px solid ${LINE}` }}>
-            You'll need to complete your O/Ls before a degree pathway can be worked out — O/Ls are a prerequisite
-            for the A/L exam in Sri Lanka.
-          </div>
-        )}
+        {doneOL === "no" && <PdpRedirect />}
 
         {doneOL === "yes" && (
           <>
@@ -199,132 +236,150 @@ export default function ResultsForm({ onSubmit }) {
               />
             </FormRow>
 
-            {OL_SUBJECTS.map(({ key, label }, i) => (
-              <FormRow key={key} question={`O/L ${label} result`} delay={i * 60}>
-                <GradeSelect value={ol[key]} onChange={(v) => setOl({ ...ol, [key]: v })} />
-              </FormRow>
-            ))}
-
-            <FormRow
-              question="O/L Business & Accounting Studies result"
-              helper="Optional — only answer this if you sat this subject at O/L."
-            >
-              <GradeSelect
-                value={ol["Business & Accounting Studies"]}
-                onChange={(v) => setOl({ ...ol, "Business & Accounting Studies": v })}
+            {olPassCategory === "less6" && (
+              <PdpRedirect
+                heading="Fewer than 6 O/L passes doesn't rule out every pathway — but PDP is worth a look too."
+                body="Some degree pathways only check specific A/L results, not your total O/L pass count, so it's still worth continuing below. SLIIT's Professional Development Programmes (PDP) are also open to anyone, with no O/L requirements, if you'd like a parallel option."
               />
-            </FormRow>
-
-            {/* A/L SECTION */}
-            <FormRow question="Have you completed your A/Ls?">
-              <Toggle
-                value={doneAL}
-                onChange={setDoneAL}
-                options={[
-                  { value: "yes", label: "Yes" },
-                  { value: "no", label: "No" },
-                ]}
-              />
-            </FormRow>
-
-            {doneAL === "no" && (
-              <div className="py-6 text-sm" style={{ color: ALERT, borderBottom: `1px solid ${LINE}` }}>
-                Most degree pathways need A/L results to check eligibility against. Come back once you have them.
-              </div>
             )}
 
-            {doneAL === "yes" && (
+            {olPassCategory && (
               <>
-                <FormRow question="What were your overall A/L results?">
-                  <Toggle
-                    value={alPassCategory}
-                    onChange={setAlPassCategory}
-                    options={[
-                      { value: "min3", label: "3 or more passes" },
-                      { value: "less3", label: "Fewer than 3" },
-                    ]}
+                {OL_SUBJECTS.map(({ key, label }, i) => (
+                  <FormRow key={key} question={`O/L ${label} result`} delay={i * 60}>
+                    <GradeSelect value={ol[key]} onChange={(v) => setOl({ ...ol, [key]: v })} />
+                  </FormRow>
+                ))}
+
+                <FormRow
+                  question="O/L Business & Accounting Studies result"
+                  helper="Optional — only answer this if you sat this subject at O/L."
+                >
+                  <GradeSelect
+                    value={ol["Business & Accounting Studies"]}
+                    onChange={(v) => setOl({ ...ol, "Business & Accounting Studies": v })}
                   />
                 </FormRow>
 
-                <FormRow question="Which A/L stream did you follow?">
-                  <select
-                    value={stream}
-                    onChange={(e) => handleStreamChange(e.target.value)}
-                    className="w-full md:w-64 rounded-lg border px-3 py-2 text-sm bg-white"
-                    style={{ borderColor: LINE, color: NAVY }}
-                  >
-                    <option value="">Select stream</option>
-                    {STREAMS.map((s) => (
-                      <option key={s} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                </FormRow>
+                {olBelowCThreshold && (
+                  <PdpRedirect
+                    heading="A below-C in O/L Maths or English won't block every pathway — but PDP is worth a look too."
+                    body="Only some degree pathways require a C pass in O/L Mathematics or English, so it's still worth continuing below to check your A/L-based options. SLIIT's Professional Development Programmes (PDP) are also open to anyone, with no O/L requirements, if you'd like a parallel option."
+                  />
+                )}
 
-                {stream &&
-                  [0, 1, 2].map((i) => (
-                    <FormRow key={i} question={`A/L subject ${i + 1}`} delay={i * 60}>
-                      <div className="flex flex-col gap-2">
-                        <select
-                          value={alSubjects[i]}
-                          onChange={(e) => handleSubjectChange(i, e.target.value)}
-                          className="w-full md:w-64 rounded-lg border px-3 py-2 text-sm bg-white"
-                          style={{ borderColor: LINE, color: NAVY }}
-                        >
-                          <option value="">Select subject</option>
-                          {availableFor(i).map((s) => (
-                            <option key={s} value={s}>
-                              {s}
-                            </option>
-                          ))}
-                        </select>
-                        <GradeSelect
-                          value={alGrades[i]}
-                          onChange={(v) => handleGradeChange(i, v)}
-                          disabled={!alSubjects[i]}
-                        />
-                      </div>
+                <>
+                    {/* A/L SECTION */}
+                    <FormRow question="Have you completed your A/Ls?">
+                      <Toggle
+                        value={doneAL}
+                        onChange={setDoneAL}
+                        options={[
+                          { value: "yes", label: "Yes" },
+                          { value: "no", label: "No" },
+                        ]}
+                      />
                     </FormRow>
-                  ))}
 
-                <FormRow
-                  question="A/L General English result"
-                  helper="Optional — this is the common General English paper, separate from your 3 main subjects. Leave unselected if you don't have a result for it."
-                >
-                  <GradeSelect value={alGeneralEnglish} onChange={setAlGeneralEnglish} />
-                </FormRow>
+                    {doneAL === "no" && <SifRecommendation />}
 
-                <FormRow
-                  question="What was your A/L medium of instruction?"
-                  helper="Optional — only relevant for a small number of programmes."
-                >
-                  <Toggle
-                    value={alMedium}
-                    onChange={setAlMedium}
-                    options={[
-                      { value: "Sinhala", label: "Sinhala" },
-                      { value: "Tamil", label: "Tamil" },
-                      { value: "English", label: "English" },
-                    ]}
-                  />
-                </FormRow>
+                    {doneAL === "yes" && (
+                      <>
+                        <FormRow question="What were your overall A/L results?">
+                          <Toggle
+                            value={alPassCategory}
+                            onChange={setAlPassCategory}
+                            options={[
+                              { value: "min3", label: "3 or more passes" },
+                              { value: "less3", label: "Fewer than 3" },
+                            ]}
+                          />
+                        </FormRow>
+
+                        <FormRow question="Which A/L stream did you follow?">
+                          <select
+                            value={stream}
+                            onChange={(e) => handleStreamChange(e.target.value)}
+                            className="w-full md:w-64 rounded-lg border px-3 py-2 text-sm bg-white"
+                            style={{ borderColor: LINE, color: NAVY }}
+                          >
+                            <option value="">Select stream</option>
+                            {STREAMS.map((s) => (
+                              <option key={s} value={s}>
+                                {s}
+                              </option>
+                            ))}
+                          </select>
+                        </FormRow>
+
+                        {stream &&
+                          [0, 1, 2].map((i) => (
+                            <FormRow key={i} question={`A/L subject ${i + 1}`} delay={i * 60}>
+                              <div className="flex flex-col gap-2">
+                                <select
+                                  value={alSubjects[i]}
+                                  onChange={(e) => handleSubjectChange(i, e.target.value)}
+                                  className="w-full md:w-64 rounded-lg border px-3 py-2 text-sm bg-white"
+                                  style={{ borderColor: LINE, color: NAVY }}
+                                >
+                                  <option value="">Select subject</option>
+                                  {availableFor(i).map((s) => (
+                                    <option key={s} value={s}>
+                                      {s}
+                                    </option>
+                                  ))}
+                                </select>
+                                <GradeSelect
+                                  value={alGrades[i]}
+                                  onChange={(v) => handleGradeChange(i, v)}
+                                  disabled={!alSubjects[i]}
+                                />
+                              </div>
+                            </FormRow>
+                          ))}
+
+                        <FormRow
+                          question="A/L General English result"
+                          helper="Optional — this is the common General English paper, separate from your 3 main subjects. Leave unselected if you don't have a result for it."
+                        >
+                          <GradeSelect value={alGeneralEnglish} onChange={setAlGeneralEnglish} />
+                        </FormRow>
+
+                        <FormRow
+                          question="What was your A/L medium of instruction?"
+                          helper="Optional — only relevant for a small number of programmes."
+                        >
+                          <Toggle
+                            value={alMedium}
+                            onChange={setAlMedium}
+                            options={[
+                              { value: "Sinhala", label: "Sinhala" },
+                              { value: "Tamil", label: "Tamil" },
+                              { value: "English", label: "English" },
+                            ]}
+                          />
+                        </FormRow>
+                      </>
+                    )}
+                  </>
               </>
             )}
           </>
         )}
 
-        <div className="pt-10">
-          <button
-            type="button"
-            disabled={!isComplete}
-            onClick={handleSubmit}
-            className="w-full md:w-auto px-8 py-3 rounded-lg font-semibold text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 hover:scale-[1.02] active:scale-95"
-            style={{ backgroundColor: ORANGE }}
-          >
-            Find my degree pathways
-          </button>
-        </div>
+        {!isPdpActive && (
+          <div className="pt-10">
+            <button
+              type="button"
+              disabled={!isComplete}
+              onClick={handleSubmit}
+              className="w-full md:w-auto px-8 py-3 rounded-lg font-semibold text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90 hover:scale-[1.02] active:scale-95"
+              style={{ backgroundColor: ORANGE }}
+            >
+              Find my degree pathways
+            </button>
+          </div>
+        )}
       </div>
 
       <Footer />

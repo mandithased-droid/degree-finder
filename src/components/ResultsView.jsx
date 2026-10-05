@@ -1,6 +1,8 @@
 import { useState } from "react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import SifRecommendation from "./SifRecommendation";
+import { GRADE_RANK } from "../data/grades";
 
 const NAVY = "#0A1F44";
 const NAVY_SOFT = "#3c8781";
@@ -47,10 +49,10 @@ function DegreeCard({ degree, delay = 0 }) {
     degree.status === "eligible" ? GREEN : degree.status === "unknown" ? AMBER : RED;
   const statusLabel =
     degree.status === "eligible"
-      ? "Eligible"
+      ? "You're eligible"
       : degree.status === "unknown"
-      ? "Check with university"
-      : "Not eligible";
+      ? "Worth checking"
+      : "Not quite yet";
 
   return (
     <div
@@ -75,24 +77,36 @@ function DegreeCard({ degree, delay = 0 }) {
 
       {degree.status === "eligible" && degree.bridgingNeeded && (
         <p className="text-sm mb-3" style={{ color: AMBER }}>
-          Additional requirement: {degree.bridgingNeeded}
+          Just one more step: {degree.bridgingNeeded}
         </p>
       )}
 
       {degree.status === "eligible" && degree.extraRequirements?.length > 0 && (
-        <ul className="text-sm mb-3 text-[#6B7280] list-disc list-inside space-y-0.5">
-          {degree.extraRequirements.map((r) => (
-            <li key={r}>{r}</li>
-          ))}
-        </ul>
+        <>
+          <p className="text-sm font-medium mb-1.5" style={{ color: "#4B5563" }}>
+            A couple of things to also sort out:
+          </p>
+          <ul className="text-sm mb-3 text-[#6B7280] list-disc list-inside space-y-0.5">
+            {degree.extraRequirements.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
+        </>
       )}
 
       {degree.status !== "eligible" && degree.reasons?.length > 0 && (
-        <ul className="text-sm mb-3 text-[#6B7280] list-disc list-inside space-y-0.5">
-          {degree.reasons.map((r) => (
-            <li key={r}>{r}</li>
-          ))}
-        </ul>
+        <>
+          <p className="text-sm font-medium mb-1.5" style={{ color: "#4B5563" }}>
+            {degree.status === "unknown"
+              ? "Here's why we can't confirm this one yet:"
+              : "So close! Here's what's missing:"}
+          </p>
+          <ul className="text-sm mb-3 text-[#6B7280] list-disc list-inside space-y-0.5">
+            {degree.reasons.map((r) => (
+              <li key={r}>{r}</li>
+            ))}
+          </ul>
+        </>
       )}
 
       <div className="pt-2">
@@ -103,7 +117,7 @@ function DegreeCard({ degree, delay = 0 }) {
           className="inline-block px-5 py-2 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90 hover:scale-105 active:scale-95"
           style={{ backgroundColor: ORANGE }}
         >
-          Apply now
+          Apply Now →
         </a>
       </div>
     </div>
@@ -112,8 +126,8 @@ function DegreeCard({ degree, delay = 0 }) {
 
 function FilterToggle({ value, onChange, eligibleCount, totalCount }) {
   const options = [
-    { value: "eligible", label: `Eligible only (${eligibleCount})` },
-    { value: "all", label: `Show all (${totalCount})` },
+    { value: "eligible", label: `✨ My matches (${eligibleCount})` },
+    { value: "all", label: `Show everything (${totalCount})` },
   ];
   return (
     <div className="inline-flex rounded-lg overflow-hidden border mb-8" style={{ borderColor: LINE }}>
@@ -177,10 +191,16 @@ function groupByFaculty(results) {
   return orderedKeys.map((faculty) => ({ faculty, degrees: groups[faculty] }));
 }
 
-export default function ResultsView({ results, onBack }) {
+export default function ResultsView({ results, student, onBack }) {
   const [filter, setFilter] = useState("eligible");
 
   const eligible = results.filter((d) => d.status === "eligible");
+
+  const isSifEligible =
+    student &&
+    student.olPassCategory === "min6" &&
+    GRADE_RANK[student.ol?.Mathematics] >= GRADE_RANK.C &&
+    GRADE_RANK[student.ol?.English] >= GRADE_RANK.C;
   const statusFiltered = filter === "eligible" ? eligible : results;
 
   const allFaculties = [
@@ -215,18 +235,27 @@ export default function ResultsView({ results, onBack }) {
           className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg border mb-6 bg-white transition-opacity hover:opacity-90"
           style={{ color: BLUE, borderColor: BLUE }}
         >
-          ← Back
+          ← Go Back
         </button>
 
         <h1
           className="text-3xl md:text-4xl mb-2"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}
         >
-          Your pathway results
+          {eligible.length > 0 ? "Here's what fits you!" : "Here's where you stand"}
         </h1>
         <p className="text-sm md:text-base mb-6" style={{ color: NAVY_SOFT }}>
-          {eligible.length} of {results.length} programmes you're eligible for
+          {eligible.length > 0
+            ? `You're eligible for ${eligible.length} out of ${results.length} programmes we checked, nice work!`
+            : `None of the ${results.length} programmes matched this time — but take a look below, you might be closer than you think.`}
         </p>
+
+        {eligible.length === 0 && isSifEligible && (
+          <SifRecommendation
+            heading="No direct degree matches with your current A/L results — but you may qualify for the SLIIT International Foundation."
+            body="The SLIIT International Foundation (SIF) is a 1-year programme that leads directly into selected degree pathways — Computing, Business, Psychology, Quantity Surveying, Nursing, Interior Design, and more — without needing A/L results to match. Your O/L results already meet what SIF asks for."
+          />
+        )}
 
         <FilterToggle
           value={filter}
@@ -247,19 +276,19 @@ export default function ResultsView({ results, onBack }) {
             style={{ borderColor: LINE, color: NAVY_SOFT }}
           >
             {selectedFaculties.length === 0 ? (
-              <>No faculties selected — turn at least one back on above to see results.</>
+              <>👀 Looks like every faculty is hidden — turn at least one back on above to see your results.</>
             ) : (
               <>
-                No eligible programmes found with your current results or faculty selection. Try{" "}
+                Nothing here just yet with this filter. Try{" "}
                 <button
                   type="button"
                   onClick={() => setFilter("all")}
                   className="underline font-medium"
                   style={{ color: NAVY }}
                 >
-                  showing all programmes
+                  showing everything
                 </button>{" "}
-                to see what's close, or go back and double-check your answers.
+                to see what's close, or head back and double-check your answers.
               </>
             )}
           </div>
@@ -279,7 +308,7 @@ export default function ResultsView({ results, onBack }) {
               >
                 {faculty}
                 <span className="text-base font-normal" style={{ color: NAVY_SOFT }}>
-                  ({degrees.length})
+                  · {degrees.length} {degrees.length === 1 ? "match" : "matches"}
                 </span>
               </h2>
               <div className="flex flex-col gap-4">
