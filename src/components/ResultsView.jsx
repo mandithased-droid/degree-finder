@@ -1,8 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { MessageCircle } from "lucide-react";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import SifRecommendation from "./SifRecommendation";
 import { GRADE_RANK } from "../data/grades";
+
+const WHATSAPP_NUMBER = "94117544801"; // same hotline as the footer
+const WHATSAPP_GREEN = "#25D366";
+
+// Builds a WhatsApp deep link with a message pre-filled from the student's own results,
+// so a counselor's first reply can be specific instead of generic. No form, no typing.
+function buildWhatsAppLink(eligible) {
+  let message;
+  if (eligible.length > 0) {
+    const names = eligible.map((d) => d.name);
+    const shown = names.slice(0, 5);
+    const extra = names.length - shown.length;
+    const list = shown.join(", ") + (extra > 0 ? `, and ${extra} more` : "");
+    message = `Hi! I used the Pathway Finder and I'm eligible for: ${list}. Can you help me with the application?`;
+  } else {
+    message = "Hi! I used the Pathway Finder but didn't get a direct degree match. Can you help me figure out my options?";
+  }
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+function FloatingWhatsApp({ eligible }) {
+  return (
+    <a
+      href={buildWhatsAppLink(eligible)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-6 right-6 z-20 flex items-center gap-2 pl-4 pr-5 py-3 rounded-full shadow-lg transition-transform hover:scale-105 active:scale-95"
+      style={{ backgroundColor: WHATSAPP_GREEN }}
+      aria-label="Connect with a counsellor on WhatsApp"
+    >
+      <style>{`
+        @keyframes wa-pulse-ring {
+          0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+          100% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+        }
+        .wa-pulse { animation: wa-pulse-ring 2.2s ease-out infinite; }
+      `}</style>
+      <span className="absolute inset-0 rounded-full wa-pulse" />
+      <MessageCircle size={22} color="#fff" fill="#fff" className="shrink-0" />
+      <span className="text-sm font-semibold text-white whitespace-nowrap">
+        Connect with a counsellor
+      </span>
+    </a>
+  );
+}
 
 const NAVY = "#0A1F44";
 const NAVY_SOFT = "#3c8781";
@@ -49,7 +95,7 @@ function DegreeCard({ degree, delay = 0 }) {
     degree.status === "eligible" ? GREEN : degree.status === "unknown" ? AMBER : RED;
   const statusLabel =
     degree.status === "eligible"
-      ? "You're eligible"
+      ? "You're eligible! 🎉"
       : degree.status === "unknown"
       ? "Worth checking"
       : "Not quite yet";
@@ -194,6 +240,12 @@ function groupByFaculty(results) {
 export default function ResultsView({ results, student, onBack }) {
   const [filter, setFilter] = useState("eligible");
 
+  // The form page may have been scrolled down when this view mounts — always start
+  // the results page from the top instead of wherever the previous page left off.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const eligible = results.filter((d) => d.status === "eligible");
 
   const isSifEligible =
@@ -235,18 +287,22 @@ export default function ResultsView({ results, student, onBack }) {
           className="inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg border mb-6 bg-white transition-opacity hover:opacity-90"
           style={{ color: BLUE, borderColor: BLUE }}
         >
-          ← Go Back
+          ← Edit my answers
         </button>
 
         <h1
           className="text-3xl md:text-4xl mb-2"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}
         >
-          {eligible.length > 0 ? "Here's what fits you!" : "Here's where you stand"}
+          {eligible.length > 0
+            ? `Congratulations! You're eligible for ${eligible.length} ${
+                eligible.length === 1 ? "programme" : "programmes"
+              }!`
+            : "Here's where you stand"}
         </h1>
         <p className="text-sm md:text-base mb-6" style={{ color: NAVY_SOFT }}>
           {eligible.length > 0
-            ? `You're eligible for ${eligible.length} out of ${results.length} programmes we checked, nice work!`
+            ? "Take a look below to see your matches."
             : `None of the ${results.length} programmes matched this time — but take a look below, you might be closer than you think.`}
         </p>
 
@@ -323,6 +379,7 @@ export default function ResultsView({ results, student, onBack }) {
       </div>
 
       <Footer />
+      <FloatingWhatsApp eligible={eligible} />
     </div>
   );
 }

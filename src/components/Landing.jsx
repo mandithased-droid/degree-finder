@@ -16,14 +16,14 @@ export default function Landing({ onStart }) {
           className="text-4xl md:text-6xl leading-tight max-w-2xl animate-fade-up"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700, animationDelay: "0ms" }}
         >
-          Not Sure What to Study? Let's Find Your Path.
+          Let's find your pathway.
         </h1>
 
         <p
           className="text-base md:text-lg mt-6 max-w-md animate-fade-up"
           style={{ color: NAVY_SOFT, animationDelay: "180ms" }}
         >
-          Answer a few quick questions and discover the SLIIT programmes that fit you best.
+          Answer a few questions that fit you best.
         </p>
 
         <button
@@ -32,7 +32,7 @@ export default function Landing({ onStart }) {
           className="mt-10 px-10 py-4 rounded-lg font-semibold text-white text-lg transition-all hover:opacity-90 hover:scale-105 active:scale-95 animate-fade-up"
           style={{ backgroundColor: ORANGE, animationDelay: "340ms" }}
         >
-          Let's Go!
+          Let's Explore
         </button>
       </div>
 

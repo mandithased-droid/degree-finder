@@ -8,7 +8,7 @@ const LINE = "#E2E5EA";
   SIF itself requires no A/Ls at all — it's a 1-year pathway into selected degrees.
 */
 export default function SifRecommendation({
-  heading = "Haven't done your A/Ls yet? The SLIIT International Foundation could be your path.",
+  heading = "The SLIIT International Foundation could be your pathway.",
   body = "The SLIIT International Foundation (SIF) is a 1-year programme that leads directly into selected degree pathways — Computing, Business, Psychology, Quantity Surveying, Nursing, Interior Design, and more — without needing A/L results at all. Your O/L results already meet what SIF asks for.",
 }) {
   return (
