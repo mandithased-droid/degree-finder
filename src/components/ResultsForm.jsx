@@ -111,7 +111,7 @@ function PdpRedirect({
   );
 }
 
-export default function ResultsForm({ onSubmit }) {
+export default function ResultsForm({ onSubmit, onLogoClick }) {
   const [doneOL, setDoneOL] = useState("");
   const [olPassCategory, setOlPassCategory] = useState("");
   const [ol, setOl] = useState({
@@ -196,17 +196,17 @@ export default function ResultsForm({ onSubmit }) {
 
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: BG }}>
-      <NavBar />
+      <NavBar onLogoClick={onLogoClick} />
 
       <div className="flex-1 max-w-2xl mx-auto px-6 pb-16 w-full">
         <h1
           className="text-3xl md:text-4xl mb-2"
           style={{ color: NAVY, fontFamily: "'Sora', sans-serif", fontWeight: 700 }}
         >
-          Let's Get Started!
+          Let's Begin
         </h1>
         <p className="text-sm md:text-base mb-10" style={{ color: NAVY_SOFT }}>
-          Tell us about your Academic Background, and we'll handle the rest.
+          Tell us about your O/L and A/L results, and we'll handle the rest.
         </p>
 
         {/* O/L SECTION */}
@@ -295,6 +295,13 @@ export default function ResultsForm({ onSubmit }) {
                             ]}
                           />
                         </FormRow>
+
+                        {alPassCategory === "less3" && (
+                          <SifRecommendation
+                            heading="Fewer than 3 A/L passes doesn't rule out the SLIIT International Foundation."
+                            body="The SLIIT International Foundation (SIF) is a 1-year pathway that leads directly into selected degrees — Computing, Business, Psychology, Quantity Surveying, Nursing, Interior Design, and more — based on your O/L results, not your A/L pass count. It's worth a look alongside continuing below to check your A/L-based options."
+                          />
+                        )}
 
                         <FormRow question="Which A/L stream did you follow?">
                           <select
